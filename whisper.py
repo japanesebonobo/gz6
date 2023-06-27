@@ -1,4 +1,4 @@
-import openai
+import openai, os, datetime
 
 # APIキーの入力を受け取る
 api_key = input("APIキーを入力してください: ")
@@ -13,5 +13,11 @@ with open(file_path, "rb") as audio_file:
     response = openai.Audio.transcribe("whisper-1", audio_file)
     transcript = response['text']
 
-# 転写結果の表示
-print(transcript)
+# 転写結果をファイルに書き込む
+output_dir = "./script"
+os.makedirs(output_dir, exist_ok=True)
+today = datetime.date.today()
+output_file_name = f"script_{today}.txt"
+output_file_path = os.path.join(output_dir, output_file_name)
+with open(output_file_path, "w") as output_file:
+    output_file.write(transcript)
