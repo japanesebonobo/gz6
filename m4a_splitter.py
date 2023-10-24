@@ -34,10 +34,10 @@ def split_m4a(file_path):
         split_audio = AudioSegment.from_file(io.BytesIO(audio_bytes[start:end]), format="mp3")
 
         # 分割されたファイル名を作成
-        split_file_name = os.path.join(os.path.dirname(file_path), f"{base_name}_{i+1}{ext}")
+        split_file_name = os.path.join(os.path.dirname(file_path), f"{base_name}_{i+1}.mp3")  # Change the extension to .mp3
 
         # 分割ファイルを保存
-        split_audio.export(split_file_name, format="m4a")
+        split_audio.export(split_file_name, format="mp3")  # Change the format to mp3
 
         print(f"分割ファイル {split_file_name} を作成しました。")
 
